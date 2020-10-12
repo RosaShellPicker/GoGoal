@@ -21,7 +21,9 @@
             </ListView>
             <StackLayout Opacity="0.5"
                 AbsoluteLayout.LayoutBounds="0,1,1,40"
-                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional" HorizontalOptions="Center">
+                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center">
                 <Button Padding="0" Text="+" FontSize="Large" TextColor="Black" MinimumHeightRequest="40" MinimumWidthRequest="40"/>
             </StackLayout>
         </AbsoluteLayout>
@@ -34,7 +36,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                <Label Text="{Binding GoalStatus}" Margin="10,0,10,0"/>
+                                <Image MinimumHeightRequest="10" MinimumWidthRequest="10" Source="https://via.placeholder.com/150" Margin="0,0,10,0"/>
                                 <Label Text="{Binding Title}" VerticalOptions="Center"/>
                             </StackLayout>
                         </ViewCell>
@@ -43,7 +47,9 @@
             </ListView>
             <StackLayout Opacity="0.5"
                 AbsoluteLayout.LayoutBounds="0,1,1,40"
-                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional" HorizontalOptions="Center">
+                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
                 <Button Padding="0" Text="+" FontSize="Large" TextColor="Black" MinimumHeightRequest="40" MinimumWidthRequest="40"/>
             </StackLayout>
         </AbsoluteLayout>

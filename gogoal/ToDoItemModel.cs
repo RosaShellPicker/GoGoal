@@ -48,37 +48,37 @@ namespace gogoal
                 this.Title = title;
             }
 
-            public Builder withGoalId(Guid goalId)
+            public Builder WithGoalId(Guid goalId)
             {
                 this.GoalId = goalId;
                 return this;
             }
 
-            public Builder withIsChecked(bool isChecked)
+            public Builder WithIsChecked(bool isChecked)
             {
                 this.IsChecked = isChecked;
                 return this;
             }
 
-            public Builder withColor(string color)
+            public Builder WithColor(string color)
             {
                 this.Color = color;
                 return this;
             }
 
-            public Builder withImportantLevel(ImportantLevelEnumeration importantLevelEnumeration)
+            public Builder WithImportantLevel(ImportantLevelEnumeration importantLevelEnumeration)
             {
                 this.ImportantLevel = importantLevelEnumeration;
                 return this;
             }
 
-            public Builder withDetails(string details)
+            public Builder WithDetails(string details)
             {
                 this.Details = details;
                 return this;
             }
 
-            public Builder withDueDate(DateTime dueDate)
+            public Builder WithDueDate(DateTime dueDate)
             {
                 this.DueDate = dueDate;
                 return this;
