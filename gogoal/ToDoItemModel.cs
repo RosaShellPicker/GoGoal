@@ -7,7 +7,7 @@ namespace gogoal
     public class ToDoItemModel
     {
         public Guid ToDoItemId { get; set; }
-        public Guid GoalId { get; set; }
+        public Guid? GoalId { get; set; }
         public string Title { get; set; }
         public bool IsChecked { get; set; }
         public string Color { get; set; }
@@ -34,7 +34,7 @@ namespace gogoal
         public class Builder
         {
             private Guid ToDoItemId { get; set; }
-            private Guid GoalId { get; set; }
+            private Guid? GoalId { get; set; }
             private string Title { get; set; }
             private bool IsChecked { get; set; }
             private string Color { get; set; }
@@ -48,7 +48,7 @@ namespace gogoal
                 this.Title = title;
             }
 
-            public Builder WithGoalId(Guid goalId)
+            public Builder WithGoalId(Guid? goalId)
             {
                 this.GoalId = goalId;
                 return this;

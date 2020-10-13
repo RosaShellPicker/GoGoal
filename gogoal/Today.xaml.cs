@@ -107,6 +107,21 @@ namespace gogoal
             GoalList.ItemsSource = Goals;
         }
 
-        
+        void TodoItemEntry_Completed(System.Object sender, System.EventArgs e)
+        {
+            if (String.IsNullOrEmpty(((Entry)sender).Text))
+                return;
+
+            ToDoItems.Add(
+                new ToDoItemModel.Builder(Guid.NewGuid(), ((Entry)sender).Text)
+              .WithColor(null)
+              .WithDetails(null)
+              .WithDueDate(DateTime.Today.AddDays(1))
+              .WithGoalId(null)
+              .WithImportantLevel(ImportantLevelEnumeration.Undefined)
+              .WithIsChecked(false)
+              .Build());
+            ((Entry)sender).Text = null;
+        }
     }
 }

@@ -19,12 +19,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Opacity="0.5"
+            <StackLayout
                 AbsoluteLayout.LayoutBounds="0,1,1,40"
                 AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center">
-                <Button Padding="0" Text="+" FontSize="Large" TextColor="Black" MinimumHeightRequest="40" MinimumWidthRequest="40"/>
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Entry x:Name="TodoItemEntry" Completed="TodoItemEntry_Completed" Placeholder="+ New" PlaceholderColor="DimGray" Keyboard="Chat"/>
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage>
@@ -38,7 +38,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                 <Label Text="{Binding GoalStatus}" Margin="10,0,10,0"/>
-                                <Image MinimumHeightRequest="10" MinimumWidthRequest="10" Source="https://via.placeholder.com/150" Margin="0,0,10,0"/>
+                                <Image BackgroundColor="Red"  MinimumHeightRequest="100" MinimumWidthRequest="100" Source="https://via.placeholder.com/150"/>
                                 <Label Text="{Binding Title}" VerticalOptions="Center"/>
                             </StackLayout>
                         </ViewCell>
@@ -50,7 +50,7 @@
                 AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
-                <Button Padding="0" Text="+" FontSize="Large" TextColor="Black" MinimumHeightRequest="40" MinimumWidthRequest="40"/>
+                <Button Text="+" FontSize="Large" TextColor="Black" Padding="0"  MinimumHeightRequest="400" MinimumWidthRequest="400"/>
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage>
