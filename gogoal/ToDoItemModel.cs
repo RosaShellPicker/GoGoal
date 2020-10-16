@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 namespace gogoal
 {
     /// <summary>
@@ -99,6 +100,19 @@ namespace gogoal
                     DueDate = this.DueDate
                 };
             }
+        }
+    }
+
+    public class ToDoItemGroupedModel:ObservableCollection<ToDoItemModel>
+    {
+        public string GroupTitle { get; set; }
+
+        public string ShortName { get; set; }
+
+        public ToDoItemGroupedModel(string groupTitle, string shortName)
+        {
+            this.GroupTitle = groupTitle;
+            this.ShortName = shortName;
         }
     }
 }
