@@ -46,7 +46,7 @@ namespace gogoal
         public Today()
         {
             InitializeComponent();
-            var goalTodoItems = new ToDoItemGroupedModel("Goal","G");
+            var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
             var generalToDoItems = new ToDoItemGroupedModel("General", "GNR");
             goalTodoItems.Add(
                 new ToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner")
@@ -104,6 +104,11 @@ namespace gogoal
                 .WithIsChecked(false)
                 .Build());
             ((Entry)sender).Text = null;
+        }
+
+        async void NewGoal_Clicked(System.Object sender, System.EventArgs e)
+        {
+            await this.Navigation.PushAsync(new EditGoalPage());
         }
     }
 }

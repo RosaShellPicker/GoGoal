@@ -20,20 +20,18 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout
-                AbsoluteLayout.LayoutBounds="0,1,1,40"
-                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
-                <Entry x:Name="TodoItemEntry" Completed="TodoItemEntry_Completed" Placeholder="+ New" PlaceholderColor="DimGray" Keyboard="Chat"/>
-            </StackLayout>
+            <Entry x:Name="TodoItemEntry"
+                    AbsoluteLayout.LayoutBounds="0,1,1,40"
+                    AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
+                    Completed="TodoItemEntry_Completed" Placeholder="+ New" HorizontalTextAlignment="Center" BackgroundColor="LightSkyBlue" PlaceholderColor="DarkBlue" Keyboard="Chat"/>
         </AbsoluteLayout>
     </ContentPage>
     <ContentPage Title="Goals" >
-        <AbsoluteLayout Padding="20,20,20,0">
+        <AbsoluteLayout>
             <ListView x:Name="GoalList" Opacity="0.5"
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="SizeProportional">
+                AbsoluteLayout.LayoutFlags="SizeProportional"
+                Margin="20,20,20,20">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -46,13 +44,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Opacity="0.5"
-                AbsoluteLayout.LayoutBounds="0,1,1,40"
-                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
-                <Button Text="+" FontSize="Large" TextColor="Black" Padding="0"  MinimumHeightRequest="400" MinimumWidthRequest="400"/>
-            </StackLayout>
+            <Button x:Name="NewGoal"
+                    AbsoluteLayout.LayoutBounds="0,1,1,40"
+                    AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
+                    Padding="20,0,20,0"
+                    Text="+ Goal" FontSize="16" TextColor="Black" BackgroundColor="LightSkyBlue"
+                    Clicked="NewGoal_Clicked"/>
         </AbsoluteLayout>
     </ContentPage>
 </TabbedPage>

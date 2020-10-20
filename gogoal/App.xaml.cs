@@ -10,7 +10,7 @@ namespace gogoal
         {
             InitializeComponent();
 
-            MainPage = new Today();
+            MainPage = new NavigationPage(new Today()) ;
         }
 
         protected override void OnStart()
