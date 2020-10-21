@@ -19,7 +19,7 @@
                      RelativeLayout.YConstraint="0"
                      RelativeLayout.HeightConstraint="50"
                      RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"/>
-            <Label Text="Goal" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="DarkBlue" FontSize="16"
+            <Label Text="Goal" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16"
                    RelativeLayout.XConstraint="0"
                    RelativeLayout.YConstraint="0"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
@@ -35,9 +35,9 @@
             Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
         <DatePicker Grid.Row="3" Grid.Column="1"
                FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" MinimumDate="{Binding Today}"/>
-        <StackLayout Grid.ColumnSpan="2" Grid.Row="4" BackgroundColor="Yellow" Margin="10,10,10,10">
-        </StackLayout>
-        <Button Text="+ New TODO" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSkyBlue" TextColor="DarkBlue"
+        <ListView Grid.ColumnSpan="2" Grid.Row="4" BackgroundColor="Yellow" Margin="10,10,10,10">
+        </ListView>
+        <Button Text="+ New TODO" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSkyBlue" TextColor="White"
                 Grid.Row="5" Grid.ColumnSpan="2"/>
     </Grid>
 </ContentPage>

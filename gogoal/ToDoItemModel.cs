@@ -14,13 +14,24 @@ namespace gogoal
         public string Color { get; set; }
         public ImportantLevelEnumeration ImportantLevel { get; set; }
         public string Details { get; set; }
-        public DateTime DueDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public bool IsRepeat { get; set; }
+        public TimeSpan? Duration { get; set; }
 
         public ToDoItemModel()
         {
         }
 
-        public ToDoItemModel(Guid toDoItemId, Guid goalId, string title, bool isChecked, string color, ImportantLevelEnumeration importantLevel, string details, DateTime dueDate)
+        public ToDoItemModel(Guid toDoItemId,
+            Guid goalId,
+            string title,
+            bool isChecked,
+            string color,
+            ImportantLevelEnumeration importantLevel,
+            string details,
+            DateTime startDate,
+            bool isRepeat,
+            TimeSpan? duration)
         {
             this.ToDoItemId = toDoItemId;
             this.GoalId = goalId;
@@ -29,7 +40,9 @@ namespace gogoal
             this.Color = color;
             this.ImportantLevel = importantLevel;
             this.Details = details;
-            this.DueDate = dueDate;
+            this.StartDate = startDate;
+            this.IsRepeat = isRepeat;
+            this.Duration = duration;
         }
 
         public class Builder
@@ -41,7 +54,9 @@ namespace gogoal
             private string Color { get; set; }
             private ImportantLevelEnumeration ImportantLevel { get; set; }
             private string Details { get; set; }
-            private DateTime DueDate { get; set; }
+            private DateTime StartDate { get; set; }
+            private bool IsRepeat { get; set; }
+            private TimeSpan? Duration { get; set; }
 
             public Builder (Guid toDoItemId, string title)
             {
@@ -79,9 +94,21 @@ namespace gogoal
                 return this;
             }
 
-            public Builder WithDueDate(DateTime dueDate)
+            public Builder WithStartDate(DateTime startDate)
             {
-                this.DueDate = dueDate;
+                this.StartDate = startDate;
+                return this;
+            }
+
+            public Builder WithIsRepeat(bool isRepeat)
+            {
+                this.IsRepeat = isRepeat;
+                return this;
+            }
+
+            public Builder WithDuration(TimeSpan? duration)
+            {
+                this.Duration = duration;
                 return this;
             }
 
@@ -97,7 +124,9 @@ namespace gogoal
                     Color = this.Color,
                     ImportantLevel = this.ImportantLevel,
                     Details = this.Details,
-                    DueDate = this.DueDate
+                    StartDate = this.StartDate,
+                    IsRepeat = this.IsRepeat,
+                    Duration = this.Duration
                 };
             }
         }

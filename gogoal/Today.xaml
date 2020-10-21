@@ -4,8 +4,8 @@
             x:Class="gogoal.Today">
     <!--Pages can be added as references or inline-->
     <ContentPage Title="Today">
-        <AbsoluteLayout Padding="20,20,20,0">
-            <ListView x:Name="TodayTodoList" Opacity="0.5"
+        <AbsoluteLayout>
+            <ListView x:Name="TodayTodoList" Opacity="0.5" Margin="20,20,20,0"
                       IsGroupingEnabled="True" GroupDisplayBinding="{Binding GroupTitle}" GroupShortNameBinding="{Binding ShortName}"
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="SizeProportional">
@@ -23,7 +23,7 @@
             <Entry x:Name="TodoItemEntry"
                     AbsoluteLayout.LayoutBounds="0,1,1,40"
                     AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
-                    Completed="TodoItemEntry_Completed" Placeholder="+ New" HorizontalTextAlignment="Center" BackgroundColor="LightSkyBlue" PlaceholderColor="DarkBlue" Keyboard="Chat"/>
+                    Completed="TodoItemEntry_Completed" Placeholder="+ New" HorizontalTextAlignment="Center" BackgroundColor="LightSkyBlue" PlaceholderColor="White" Keyboard="Chat"/>
         </AbsoluteLayout>
     </ContentPage>
     <ContentPage Title="Goals" >
@@ -48,7 +48,7 @@
                     AbsoluteLayout.LayoutBounds="0,1,1,40"
                     AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
                     Padding="20,0,20,0"
-                    Text="+ Goal" FontSize="16" TextColor="Black" BackgroundColor="LightSkyBlue"
+                    Text="+ Goal" FontSize="16" TextColor="White" BackgroundColor="LightSkyBlue"
                     Clicked="NewGoal_Clicked"/>
         </AbsoluteLayout>
     </ContentPage>

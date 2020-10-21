@@ -13,6 +13,8 @@ namespace gogoal
         public string Title { get; set; }
         public string Detail { get; set; }
         public double Progress { get; set; }
+        public ImportantLevelEnumeration ImportantLevel { get; set; }
+        public DateTime StartDate { get; set; } // The date this goal started
         public GoalStatusEnumeration GoalStatus { get; set; }
         public List<GoalStageModel> GoalStages { get; set; }
 
@@ -31,6 +33,8 @@ namespace gogoal
             private string Title { get; set; }
             private string Details { get; set; }
             private double Progress { get; set; }
+            private ImportantLevelEnumeration ImportantLevel { get; set; }
+            private DateTime StartDate { get; set; }
             private GoalStatusEnumeration GoalStatus { get; set; }
             private List<GoalStageModel> GoalStageModels { get; set; }
 
@@ -63,6 +67,18 @@ namespace gogoal
                 return this;
             }
 
+            public Builder WithImportantLevel(ImportantLevelEnumeration importantLevel)
+            {
+                this.ImportantLevel = importantLevel;
+                return this;
+            }
+
+            public Builder WithStartDate(DateTime startDate)
+            {
+                this.StartDate = startDate;
+                return this;
+            }
+
             public Builder WithGoalStages(List<GoalStageModel> goalStageModels)
             {
                 this.GoalStageModels = goalStageModels;
@@ -77,7 +93,9 @@ namespace gogoal
                     Title = this.Title,
                     Detail = this.Details,
                     Progress = this.Progress,
+                    StartDate = this.StartDate,
                     GoalStatus = this.GoalStatus,
+                    ImportantLevel = this.ImportantLevel,
                     GoalStages = this.GoalStageModels
                 };
             }

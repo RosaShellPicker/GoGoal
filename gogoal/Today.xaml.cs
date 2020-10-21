@@ -52,37 +52,45 @@ namespace gogoal
                 new ToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner")
                 .WithColor("green")
                 .WithDetails("details")
-                .WithDueDate(DateTime.Now.AddDays(7))
+                .WithStartDate(DateTime.Now.AddDays(7))
                 .WithGoalId(Guid.NewGuid())
                 .WithImportantLevel(ImportantLevelEnumeration.ImportantNonImergency)
                 .WithIsChecked(true)
+                .WithIsRepeat(false)
+                .WithDuration(new TimeSpan(30,0,0,0,0))
                 .Build());
             goalTodoItems.Add(
                  new ToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony")
                 .WithColor("red")
                 .WithDetails("details")
-                .WithDueDate(DateTime.Now.AddDays(7))
+                .WithStartDate(DateTime.Now.AddDays(7))
                 .WithGoalId(Guid.NewGuid())
                 .WithImportantLevel(ImportantLevelEnumeration.ImergencyNonimportant)
                 .WithIsChecked(false)
+                .WithIsRepeat(false)
+                .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
                 .Build());
             generalToDoItems.Add(
                 new ToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner")
                 .WithColor("green")
                 .WithDetails("details")
-                .WithDueDate(DateTime.Now.AddDays(7))
+                .WithStartDate(DateTime.Now.AddDays(7))
                 .WithGoalId(null)
                 .WithImportantLevel(ImportantLevelEnumeration.ImportantNonImergency)
                 .WithIsChecked(true)
+                .WithIsRepeat(false)
+                .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
                 .Build());
             generalToDoItems.Add(
                  new ToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony")
                 .WithColor("red")
                 .WithDetails("details")
-                .WithDueDate(DateTime.Now.AddDays(7))
+                .WithStartDate(DateTime.Now.AddDays(7))
                 .WithGoalId(null)
                 .WithImportantLevel(ImportantLevelEnumeration.ImergencyNonimportant)
                 .WithIsChecked(false)
+                .WithIsRepeat(false)
+                .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
                 .Build());
             ToDoItemsGrouped.Add(goalTodoItems);
             ToDoItemsGrouped.Add(generalToDoItems);
@@ -98,7 +106,7 @@ namespace gogoal
                 new ToDoItemModel.Builder(Guid.NewGuid(), ((Entry)sender).Text)
                 .WithColor(null)
                 .WithDetails(null)
-                .WithDueDate(DateTime.Today.AddDays(1))
+                .WithStartDate(DateTime.Today.AddDays(1))
                 .WithGoalId(null)
                 .WithImportantLevel(ImportantLevelEnumeration.Undefined)
                 .WithIsChecked(false)
