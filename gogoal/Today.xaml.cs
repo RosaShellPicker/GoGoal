@@ -5,43 +5,11 @@ using System.Collections.ObjectModel;
 namespace gogoal
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Today : TabbedPage
+    public partial class Today : ContentPage
     {
         public ObservableCollection<ToDoItemGroupedModel> ToDoItemsGrouped { get; } = new ObservableCollection<ToDoItemGroupedModel>();
 
-        public ObservableCollection<GoalModel> Goals { get; } = new ObservableCollection<GoalModel>()
-        {
-            new GoalModel.Builder(Guid.NewGuid(), "Happy family")
-            .WithDetails(null)
-            .WithProgress(0)
-            .WithGoalStatus(GoalStatusEnumeration.Created)
-            .WithGoalStages(null)
-            .Build(),
-            new GoalModel.Builder(Guid.NewGuid(), "Healthier life")
-            .WithDetails(null)
-            .WithProgress(0)
-            .WithGoalStatus(GoalStatusEnumeration.Created)
-            .WithGoalStages(null)
-            .Build(),
-            new GoalModel.Builder(Guid.NewGuid(), "Reading more books")
-            .WithDetails(null)
-            .WithProgress(0)
-            .WithGoalStatus(GoalStatusEnumeration.Created)
-            .WithGoalStages(null)
-            .Build(),
-            new GoalModel.Builder(Guid.NewGuid(), "Help more people")
-            .WithDetails(null)
-            .WithProgress(0)
-            .WithGoalStatus(GoalStatusEnumeration.Created)
-            .WithGoalStages(null)
-            .Build(),
-            new GoalModel.Builder(Guid.NewGuid(), "Create more relationships")
-            .WithDetails(null)
-            .WithProgress(0)
-            .WithGoalStatus(GoalStatusEnumeration.Created)
-            .WithGoalStages(null)
-            .Build()
-        };
+       
 
         public Today()
         {
@@ -95,7 +63,6 @@ namespace gogoal
             ToDoItemsGrouped.Add(goalTodoItems);
             ToDoItemsGrouped.Add(generalToDoItems);
             TodayTodoList.ItemsSource = ToDoItemsGrouped;
-            GoalList.ItemsSource = Goals;
         }
 
         void TodoItemEntry_Completed(System.Object sender, System.EventArgs e)
@@ -114,9 +81,6 @@ namespace gogoal
             ((Entry)sender).Text = null;
         }
 
-        async void NewGoal_Clicked(System.Object sender, System.EventArgs e)
-        {
-            await this.Navigation.PushAsync(new EditGoalPage());
-        }
+        
     }
 }

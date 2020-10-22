@@ -10,7 +10,7 @@ namespace gogoal
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Today()) ;
+            MainPage = new NavigationPage(new GoGoal()) ;
         }
 
         protected override void OnStart()
