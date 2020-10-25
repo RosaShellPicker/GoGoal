@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gogoal.GoGoalMaster" Title="Master">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="gogoal.GoGoalMaster"
+    Title="Master">
     <StackLayout>
         <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
             <ListView.Header>
@@ -15,14 +19,19 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="10" />
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="1" Grid.Row="2" Text="GoGoal" FontSize="24" TextColor="White"/>
+                    <Label Grid.Column="1" Grid.Row="2" Text="GoGoal" FontSize="20" FontAttributes="Bold" TextColor="White"/>
                 </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-                            <Label VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" Text="{Binding Title}" FontSize="24" TextColor="#03A9F4" />
+                        <StackLayout Orientation="Horizontal" Padding="15,10" HorizontalOptions="FillAndExpand">
+                            <Image Aspect="AspectFill" HeightRequest="30" WidthRequest="30">
+                                <Image.Source>
+                                    <FileImageSource File="{Binding IconSource}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label VerticalOptions="FillAndExpand" FontSize="18" VerticalTextAlignment="Center" Text="{Binding Title}" TextColor="#03A9F4" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

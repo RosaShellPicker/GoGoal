@@ -33,10 +33,11 @@ namespace gogoal
             {
                 MenuItems = new ObservableCollection<GoGoalMenuItem>(new[]
                 {
-                    new GoGoalMenuItem("Today", "", typeof(Today)),
+                    new GoGoalMenuItem("Today", "calendar120.png", typeof(Today)),
                     new GoGoalMenuItem ("Goals", "", typeof(Goals)),
                     new GoGoalMenuItem ("Grocery", "", typeof(Goals)),
-                    new GoGoalMenuItem ("QuickNotes", "", typeof(Goals))
+                    new GoGoalMenuItem ("QuickNotes", "", typeof(Goals)),
+                    new GoGoalMenuItem ("Settings", "", typeof(Goals))
                 });
             }
 
