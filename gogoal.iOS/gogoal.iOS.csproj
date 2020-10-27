@@ -113,6 +113,24 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Resources\calendar120.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\calendar.png.imageset\calendar120.png" />
+    <ImageAsset Include="Assets.xcassets\calendar.png.imageset\calendar-120.png" />
+    <ImageAsset Include="Assets.xcassets\calendar.png.imageset\calendar-80.png" />
+    <ImageAsset Include="Assets.xcassets\calendar.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\settings.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\settings.png.imageset\icons8-settings-120.png" />
+    <ImageAsset Include="Assets.xcassets\settings.png.imageset\icons8-settings-240.png" />
+    <ImageAsset Include="Assets.xcassets\settings.png.imageset\icons8-settings-80.png" />
+    <ImageAsset Include="Assets.xcassets\goals.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\goals.png.imageset\goal-icon.png" />
+    <ImageAsset Include="Assets.xcassets\grocery.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\grocery.png.imageset\grocery1.png" />
+    <ImageAsset Include="Assets.xcassets\note.png.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\note.png.imageset\note.png" />
+    <ImageAsset Include="Assets.xcassets\grocery.png.imageset\grocery-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -135,8 +153,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\calendar120.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidResource>
+    <Folder Include="Assets.xcassets\calendar.png.imageset\" />
+    <Folder Include="Assets.xcassets\settings.png.imageset\" />
+    <Folder Include="Assets.xcassets\goals.png.imageset\" />
+    <Folder Include="Assets.xcassets\grocery.png.imageset\" />
+    <Folder Include="Assets.xcassets\note.png.imageset\" />
   </ItemGroup>
 </Project>
