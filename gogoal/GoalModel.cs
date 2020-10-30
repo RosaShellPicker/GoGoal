@@ -16,7 +16,7 @@ namespace gogoal
         public ImportantLevelEnumeration ImportantLevel { get; set; }
         public DateTime StartDate { get; set; } // The date this goal started
         public GoalStatusEnumeration GoalStatus { get; set; }
-        public List<GoalStageModel> GoalStages { get; set; }
+        public List<GoalStageModel> GoalStages { get; set; } // for group todoitem of one goal, just use stage title to 
 
         public GoalModel()
         {
