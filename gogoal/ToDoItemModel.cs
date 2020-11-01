@@ -9,6 +9,7 @@ namespace gogoal
     {
         public Guid ToDoItemId { get; set; }
         public Guid? GoalId { get; set; }
+        public Guid? StageId { get; set; }
         public string Title { get; set; }
         public bool IsChecked { get; set; }
         public string Color { get; set; }
@@ -23,7 +24,8 @@ namespace gogoal
         }
 
         public ToDoItemModel(Guid toDoItemId,
-            Guid goalId,
+            Guid? goalId,
+            Guid? stageId,
             string title,
             bool isChecked,
             string color,
@@ -35,6 +37,7 @@ namespace gogoal
         {
             this.ToDoItemId = toDoItemId;
             this.GoalId = goalId;
+            this.StageId = stageId;
             this.Title = title;
             this.IsChecked = isChecked;
             this.Color = color;
@@ -49,6 +52,7 @@ namespace gogoal
         {
             private Guid ToDoItemId { get; set; }
             private Guid? GoalId { get; set; }
+            private Guid? StageId { get; set; }
             private string Title { get; set; }
             private bool IsChecked { get; set; }
             private string Color { get; set; }
@@ -67,6 +71,12 @@ namespace gogoal
             public Builder WithGoalId(Guid? goalId)
             {
                 this.GoalId = goalId;
+                return this;
+            }
+
+            public Builder WithStageId(Guid? stageId)
+            {
+                this.StageId = stageId;
                 return this;
             }
 
@@ -119,6 +129,7 @@ namespace gogoal
 
                     ToDoItemId = this.ToDoItemId,
                     GoalId = this.GoalId,
+                    StageId = this.StageId,
                     Title = this.Title,
                     IsChecked = this.IsChecked,
                     Color = this.Color,

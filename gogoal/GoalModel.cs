@@ -28,8 +28,6 @@ namespace gogoal
         public class Builder    
         {
             private Guid GoalId { get; set; }
-            private Guid? ParentGoalId { get; set; }
-            private List<Guid> ChildrenGoals{ get; set; }
             private string Title { get; set; }
             private string Details { get; set; }
             private double Progress { get; set; }

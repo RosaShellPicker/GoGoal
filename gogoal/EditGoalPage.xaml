@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gogoal.EditGoalPage">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -34,7 +34,8 @@
         <Label Text="Due Day:"  HorizontalOptions="EndAndExpand"
             Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
         <DatePicker Grid.Row="3" Grid.Column="1"
-               FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" MinimumDate="{Binding Today}"/>
+               FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"
+                    MinimumDate="{Binding Today}"/>
         <ListView Grid.ColumnSpan="2" Grid.Row="4" BackgroundColor="Yellow" Margin="10,10,10,10">
         </ListView>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
@@ -42,8 +43,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Text="+ NEW STAGE" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSkyBlue" TextColor="White"
-                    Grid.Row="0" Grid.Column="0"/>
+            <Button x:Name="newToDoBtn" Text="+ NEW TODO" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSkyBlue" TextColor="White"
+                    Grid.Row="0" Grid.Column="0"
+                    Clicked="newToDoBtn_Clicked" />
             <Button Text="SAVE" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSkyBlue" TextColor="White"
                     Grid.Row="0" Grid.Column="1"/>
         </Grid>
