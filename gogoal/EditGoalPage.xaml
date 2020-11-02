@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="gogoal.EditGoalPage">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="gogoal.EditGoalPage"
+    Title="Edit Goal">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -10,32 +14,33 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <RelativeLayout Grid.Row="0" Grid.ColumnSpan="2">
-            <BoxView Color="LightSkyBlue"
-                     RelativeLayout.XConstraint="0"
-                     RelativeLayout.YConstraint="0"
-                     RelativeLayout.HeightConstraint="50"
-                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"/>
-            <Label Text="Goal" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontSize="16"
-                   RelativeLayout.XConstraint="0"
-                   RelativeLayout.YConstraint="0"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"/>
-        </RelativeLayout>
         <Label Text='Title:' HorizontalOptions="EndAndExpand"
-            Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Entry Grid.Row="1" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"/>
+            Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
+        <Entry Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"/>
         <Label Text="Detail:"  HorizontalOptions="EndAndExpand"
-            Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Entry Grid.Row="2" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
+            Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
+        <Entry Grid.Row="1" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
+        <Label Text="Importance:"  HorizontalOptions="EndAndExpand"
+                Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
+        <Picker x:Name="ImportancePicker" Grid.Row="2" Grid.Column="1"
+                FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>ImportantAndImergency</x:String>
+                    <x:String>ImportantNonImergency</x:String>
+                    <x:String>ImergencyNonimportant</x:String>
+                    <x:String>NonimportantNonimergency</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
         <Label Text="Due Day:"  HorizontalOptions="EndAndExpand"
-            Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
+               Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
         <DatePicker Grid.Row="3" Grid.Column="1"
                FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"
-                    MinimumDate="{Binding Today}"/>
+               MinimumDate="{Binding Today}"/>
         <ListView Grid.ColumnSpan="2" Grid.Row="4" BackgroundColor="Yellow" Margin="10,10,10,10">
         </ListView>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
