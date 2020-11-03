@@ -9,11 +9,26 @@ namespace gogoal
     {
         public ObservableCollection<ToDoItemGroupedModel> ToDoItemsGrouped { get; } = new ObservableCollection<ToDoItemGroupedModel>();
 
-       
+        public DateTime DateToday { get { return DateTime.Now; } }
+
+        public DateTime SelectedDate { get; set; }
 
         public Today()
         {
             InitializeComponent();
+            SelectedDate = DateToday;
+            InitializeData();
+        }
+
+        public Today(DateTime dateTime)
+        {
+            InitializeComponent();
+            SelectedDate = dateTime;
+            InitializeData();
+        }
+
+        void InitializeData()
+        {
             var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
             var generalToDoItems = new ToDoItemGroupedModel("General", "GNR");
             goalTodoItems.Add(
@@ -25,7 +40,7 @@ namespace gogoal
                 .WithImportantLevel(ImportantLevelEnumeration.ImportantNonImergency)
                 .WithIsChecked(true)
                 .WithIsRepeat(false)
-                .WithDuration(new TimeSpan(30,0,0,0,0))
+                .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
                 .Build());
             goalTodoItems.Add(
                  new ToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony")
@@ -63,6 +78,11 @@ namespace gogoal
             ToDoItemsGrouped.Add(goalTodoItems);
             ToDoItemsGrouped.Add(generalToDoItems);
             TodayTodoList.ItemsSource = ToDoItemsGrouped;
+        }
+        
+        void DatePicker_DateSelected(System.Object sender, DateChangedEventArgs e)
+        {
+            //TODO to show todo items for the choosen date
         }
 
         void TodoItemEntry_Completed(System.Object sender, System.EventArgs e)
