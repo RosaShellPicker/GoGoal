@@ -83,6 +83,11 @@ namespace gogoal
         void DatePicker_DateSelected(System.Object sender, DateChangedEventArgs e)
         {
             //TODO to show todo items for the choosen date
+            //不刷新页面，只刷新数据，同时控制“Today的显示”
+            if(e.NewDate == e.OldDate)
+            {
+                return;
+            }
         }
 
         void TodoItemEntry_Completed(System.Object sender, System.EventArgs e)
