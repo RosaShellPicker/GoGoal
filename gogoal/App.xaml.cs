@@ -6,6 +6,19 @@ namespace gogoal
 {
     public partial class App : Application
     {
+        static GogoalDatabase database;
+        public static GogoalDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new GogoalDatabase();
+                }
+                return database;
+            }
+        }
+
         public App()
         {
             InitializeComponent();

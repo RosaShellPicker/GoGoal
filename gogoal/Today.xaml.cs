@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 namespace gogoal
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -27,8 +28,9 @@ namespace gogoal
             InitializeData();
         }
 
-        void InitializeData()
+        async void InitializeData()
         {
+            List<ToDoItemModel> todoList = await App.Database.GetItemsAsync();
             var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
             var generalToDoItems = new ToDoItemGroupedModel("General", "GNR");
             goalTodoItems.Add(
@@ -90,7 +92,7 @@ namespace gogoal
             }
         }
 
-        void TodoItemEntry_Completed(System.Object sender, System.EventArgs e)
+        async void TodoItemEntry_Completed(System.Object sender, System.EventArgs e)
         {
             if (String.IsNullOrEmpty(((Entry)sender).Text))
                 return;
@@ -103,9 +105,19 @@ namespace gogoal
                 .WithImportantLevel(ImportantLevelEnumeration.Undefined)
                 .WithIsChecked(false)
                 .Build());
+
+            //Add data into local database
+            await App.Database.InsertItemAsync(new ToDoItemModel.Builder(Guid.NewGuid(), ((Entry)sender).Text)
+                .WithColor(null)
+                .WithDetails(null)
+                .WithStartDate(DateTime.Today.AddDays(1))
+                .WithGoalId(null)
+                .WithImportantLevel(ImportantLevelEnumeration.Undefined)
+                .WithIsChecked(false)
+                .Build());
+
+            //Set Entry text as null again
             ((Entry)sender).Text = null;
         }
-
-        
     }
 }
