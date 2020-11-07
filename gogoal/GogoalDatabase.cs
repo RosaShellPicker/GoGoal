@@ -42,13 +42,27 @@ namespace gogoal
             return Database.Table<ToDoItemModel>().ToListAsync();
         }
 
-        public Task<List<ToDoItemModel>> GetItemsNotDoneAsync()
+        //TODO
+        /// <summary>
+        /// Select all the items for today include items from goals and general items,
+        /// to select a goal todoItems is hard, due to goal items have start time and duration.
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<ToDoItemModel>> GetToDoItemsForTodayAsync()
         {
             // SQL queries are also possible
-            return Database.QueryAsync<ToDoItemModel>("SELECT * FROM [ToDoItemModel] WHERE [Done] = 0");
+            //return Database.QueryAsync<ToDoItemModel>("SELECT * FROM [ToDoItemModel] " +
+            //    "WHERE [StartDate] != null" +
+            //    "Add [StartTime]+[Duration] >=  ");
+            return null;
         }
 
-        public Task<ToDoItemModel> GetItemAsync(Guid id)
+        public Task<List<ToDoItemModel>> GetToDoItemsByGoalId(Guid goalId)
+        {
+            return Database.Table<ToDoItemModel>().Where(i => i.GoalId == goalId).OrderBy(x => x.StartDate).ToListAsync();
+        }
+
+        public Task<ToDoItemModel> GetToDoItemAsync(Guid id)
         {
             return Database.Table<ToDoItemModel>().Where(i => i.ToDoItemId == id).FirstOrDefaultAsync();
         }
