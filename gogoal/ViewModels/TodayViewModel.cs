@@ -1,25 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-namespace gogoal.ViewModels
-{
-    public class TodayViewModel : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
+namespace gogoal
+{
+    public class TodayViewModel : ExtendedBindableObject
+    {
         public DateTime DateToday { get { return DateTime.Now; } }
 
-        public DateTime SelectedDate { get; set; }
+        private DateTime selectedDate;
+        public DateTime SelectedDate
+        {
+            get
+            {
+                return selectedDate;
+            }
+            set
+            {
+                if(selectedDate != value)
+                {
+                    selectedDate = value;
+                    DateChanged();
+                }
+            }
+        }
+
+        private string entryText;
+        public string EntryText
+        {
+            get
+            {
+                return entryText;
+            }
+            set
+            {
+                if (value != entryText)
+                {
+                    entryText = value;
+                    RaisePropertyChanged(() => EntryText);
+                }
+            }
+        }
 
         public ObservableCollection<ToDoItemGroupedModel> ToDoItemsGrouped { get; }
             = new ObservableCollection<ToDoItemGroupedModel>();
+
+        public ICommand TextEntryCompleted { private set; get; }
 
 
         public TodayViewModel(DateTime dateTime)
         {
             SelectedDate = dateTime;
+            InitializeCommand();
             InitializeData();
+        }
+
+        void InitializeCommand()
+        {
+            TextEntryCompleted = new Command( async() => await InsertGeneralTodoItem()
+            );
+
+        }
+
+        void DateChanged()
+        {
+                //TODO to show todo items for the choosen date
+                //不刷新页面，只刷新数据，同时控制“Today的显示”
+        }
+
+        async Task InsertGeneralTodoItem()
+        {
+            if (String.IsNullOrEmpty(EntryText))
+                return;
+            ToDoItemsGrouped[1].Add(
+            new ToDoItemModel.Builder(Guid.NewGuid(), EntryText)
+            .WithColor(null)
+            .WithDetails(null)
+            .WithStartDate(DateTime.Today.AddDays(1))
+            .WithGoalId(null)
+            .WithImportantLevel(ImportantLevelEnumeration.Undefined)
+            .WithIsChecked(false)
+            .Build());
+
+            //Add data into local database
+            await App.Database.InsertItemAsync(new ToDoItemModel.Builder(Guid.NewGuid(), EntryText)
+                .WithColor(null)
+                .WithDetails(null)
+                .WithStartDate(DateTime.Today.AddDays(1))
+                .WithGoalId(null)
+                .WithImportantLevel(ImportantLevelEnumeration.Undefined)
+                .WithIsChecked(false)
+                .Build());
+
+            //Set Entry text as null again
+            EntryText = null;
         }
 
         async void InitializeData()
@@ -76,9 +153,6 @@ namespace gogoal.ViewModels
             ToDoItemsGrouped.Add(generalToDoItems);
         }
 
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+
     }
 }

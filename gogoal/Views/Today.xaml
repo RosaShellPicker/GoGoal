@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="gogoal.Today"
+    Title="Today">
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"
+                   Text="Today" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="White"/>
+            <DatePicker Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"
+               FontSize="18" TextColor="White" FontAttributes="Bold"
+               MinimumDate="{Binding DateToday}"/>
+        </Grid>
+    </NavigationPage.TitleView>
+    <AbsoluteLayout>
+        <ListView x:Name="TodayTodoList" ItemsSource="{Binding ToDoItemsGrouped}" Opacity="0.5" Margin="20,20,20,0"
+                    IsGroupingEnabled="True" GroupDisplayBinding="{Binding GroupTitle}" GroupShortNameBinding="{Binding ShortName}"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="SizeProportional">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}"/>
+                            <Label Text="{Binding Title}" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Entry x:Name="TodoItemEntry"
+                AbsoluteLayout.LayoutBounds="0,1,1,40"
+                AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
+                ReturnCommand="{Binding TextEntryCompleted}"
+                Text="{Binding EntryText}"
+                Placeholder="+ New" HorizontalTextAlignment="Center" BackgroundColor="LightSkyBlue" PlaceholderColor="White" Keyboard="Chat"/>
+    </AbsoluteLayout>
+</ContentPage>
