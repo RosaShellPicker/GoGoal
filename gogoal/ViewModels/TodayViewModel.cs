@@ -50,6 +50,12 @@ namespace gogoal
 
         public ICommand TextEntryCompleted { private set; get; }
 
+        public ICommand CheckedChangedCommand { private set; get; }
+
+        //A parameterless contructor for binding ViewModel in Xaml page
+        public TodayViewModel()
+        {
+        }
 
         public TodayViewModel(DateTime dateTime)
         {
@@ -60,9 +66,8 @@ namespace gogoal
 
         void InitializeCommand()
         {
-            TextEntryCompleted = new Command( async() => await InsertGeneralTodoItem()
-            );
-
+            TextEntryCompleted = new Command( async() => await InsertGeneralTodoItem());
+            CheckedChangedCommand = new Command<ToDoItemModel>(async(toDoItemModel) => await UpdateCheckedStatus(toDoItemModel));
         }
 
         void DateChanged()
@@ -97,6 +102,11 @@ namespace gogoal
 
             //Set Entry text as null again
             EntryText = null;
+        }
+
+        async Task UpdateCheckedStatus(ToDoItemModel toDoItemModel)
+        {
+            await App.Database.UpdateItemAsync(toDoItemModel);
         }
 
         async void InitializeData()

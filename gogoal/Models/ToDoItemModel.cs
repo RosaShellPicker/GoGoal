@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using SQLite;
 
 namespace gogoal
 {
@@ -9,6 +10,7 @@ namespace gogoal
     /// </summary>
     public class ToDoItemModel
     {
+        [PrimaryKey]
         public Guid ToDoItemId { get; set; }
         public Guid? GoalId { get; set; }
         public Guid? StageId { get; set; }
