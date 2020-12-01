@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using SQLite;
+
 namespace gogoal
 {
     public class GoalModel
@@ -9,6 +11,8 @@ namespace gogoal
         /// a parent goal and a list of children goals, so that we can split a
         /// big goal into several ones, and finally become a can do todoitem in daily life
         /// </summary>
+
+        [PrimaryKey]
         public Guid GoalId { get; set; }
         public string Title { get; set; }
         public string Detail { get; set; }
