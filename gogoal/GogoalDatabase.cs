@@ -48,18 +48,21 @@ namespace gogoal
         /// to select a goal todoItems is hard, due to goal items have start time and duration.
         /// </summary>
         /// <returns></returns>
-        public Task<List<ToDoItemModel>> GetToDoItemsForTodayAsync()
+        public Task<List<ToDoItemModel>> GetToDoItemsByDateAsync(DateTime date)
         {
             // SQL queries are also possible
             //return Database.QueryAsync<ToDoItemModel>("SELECT * FROM [ToDoItemModel] " +
             //    "WHERE [StartDate] != null" +
             //    "Add [StartTime]+[Duration] >=  ");
+
+            Database.QueryAsync<ToDoItemModel>("Select * from [ToDoItemModel]" +
+                "WHERE [StartDate] != null and [StartDate] < ?", date);
             return null;
         }
 
         public Task<List<ToDoItemModel>> GetToDoItemsByGoalId(Guid goalId)
         {
-            return Database.Table<ToDoItemModel>().Where(i => i.GoalId == goalId).OrderBy(x => x.StartDate).ToListAsync();
+            return Database.Table<ToDoItemModel>().Where(i => i.GoalId == goalId).ToListAsync();
         }
 
         public Task<ToDoItemModel> GetToDoItemAsync(Guid id)
