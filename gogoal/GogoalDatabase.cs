@@ -37,7 +37,7 @@ namespace gogoal
         /// Data manipulation methods
         /// </summary>
         /// <returns></returns>
-        public Task<List<ToDoItemModel>> GetItemsAsync()
+        public Task<List<ToDoItemModel>> GetGeneralToDoItemsAsync()
         {
             return Database.Table<ToDoItemModel>().ToListAsync();
         }
@@ -48,7 +48,7 @@ namespace gogoal
         /// to select a goal todoItems is hard, due to goal items have start time and duration.
         /// </summary>
         /// <returns></returns>
-        public Task<List<ToDoItemModel>> GetToDoItemsByDateAsync(DateTime date)
+        public Task<List<ToDoItemModel>> GetGeneralToDoItemsByDateAsync(DateTime date)
         {
             // SQL queries are also possible
             //return Database.QueryAsync<ToDoItemModel>("SELECT * FROM [ToDoItemModel] " +
@@ -56,7 +56,7 @@ namespace gogoal
             //    "Add [StartTime]+[Duration] >=  ");
 
             Database.QueryAsync<ToDoItemModel>("Select * from [ToDoItemModel]" +
-                "WHERE [StartDate] != null and [StartDate] < ?", date);
+                "WHERE [Date] = ?", date);
             return null;
         }
 

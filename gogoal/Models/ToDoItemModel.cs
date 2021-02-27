@@ -10,21 +10,25 @@ namespace gogoal
     /// </summary>
     public class ToDoItemModel:BaseToDoItemModel
     {
-        
-        
+        public DateTime Date { get; set; }
 
         public ToDoItemModel()
         {
         }
 
-        public class GeneralBuilder : BaseToDoItemModel.BaseBuilder<ToDoItemModel>
+        public class Builder : BaseToDoItemModel.BaseBuilder<ToDoItemModel>
         {
-            public GeneralBuilder(Guid toDoItemId, string title) : base(toDoItemId, title)
+            public DateTime Date { get; set; }
+
+            public Builder(Guid toDoItemId, string title, DateTime date) : base(toDoItemId, title)
             {
-                this.ToDoItemId = toDoItemId;
-                this.Title = title;
             }
-            
+
+            public Builder WithStartDate(DateTime Date)
+            {
+                this.Date = Date;
+                return this;
+            }
 
             public override ToDoItemModel Build()
             {
@@ -34,6 +38,7 @@ namespace gogoal
                     GoalId = this.GoalId,
                     StageId = this.StageId,
                     Title = this.Title,
+                    Date = this.Date,
                     IsChecked = this.IsChecked,
                     Color = this.Color,
                     ImportantLevel = this.ImportantLevel,

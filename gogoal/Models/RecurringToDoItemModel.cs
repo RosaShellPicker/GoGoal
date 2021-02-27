@@ -10,24 +10,22 @@ namespace gogoal
         {
         }
 
-        public class RecurringBuilder:BaseToDoItemModel.BaseBuilder<RecurringToDoItemModel>
+        public class Builder:BaseToDoItemModel.BaseBuilder<RecurringToDoItemModel>
         {
             private DateTime StartDate { get; set; }
             private TimeSpan? Duration { get; set; }
 
-            public RecurringBuilder(Guid toDoItemId, string title) : base(toDoItemId, title)
+            public Builder(Guid toDoItemId, string title) : base(toDoItemId, title)
             {
-                this.ToDoItemId = toDoItemId;
-                this.Title = title;
             }
 
-            public RecurringBuilder WithStartDate(DateTime startDate)
+            public Builder WithStartDate(DateTime startDate)
             {
                 this.StartDate = startDate;
                 return this;
             }
 
-            public RecurringBuilder WithDuration(TimeSpan? duration)
+            public Builder WithDuration(TimeSpan? duration)
             {
                 this.Duration = duration;
                 return this;

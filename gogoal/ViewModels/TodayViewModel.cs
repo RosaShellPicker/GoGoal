@@ -55,6 +55,7 @@ namespace gogoal
         //A parameterless contructor for binding ViewModel in Xaml page
         public TodayViewModel()
         {
+            SelectedDate = DateToday;
         }
 
         public TodayViewModel(DateTime dateTime)
@@ -81,7 +82,7 @@ namespace gogoal
             if (String.IsNullOrEmpty(EntryText))
                 return;
 
-            var toDoItem = new ToDoItemModel.GeneralBuilder(Guid.NewGuid(), EntryText)
+            var toDoItem = new ToDoItemModel.Builder(Guid.NewGuid(), EntryText, SelectedDate)
             .WithColor(null)
             .WithDetails(null)
             .WithGoalId(null)
@@ -105,11 +106,11 @@ namespace gogoal
         async void InitializeData()
         {
             //TODO Need to Group todoList fetched from database
-            List<ToDoItemModel> todoList = await App.Database.GetItemsAsync();
+            List<ToDoItemModel> todoList = await App.Database.GetGeneralToDoItemsAsync();
             var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
             var generalToDoItems = new ToDoItemGroupedModel("General", "GNR");
             goalTodoItems.Add(
-                new RecurringToDoItemModel.RecurringBuilder(Guid.NewGuid(), "Call Erica's house owner")
+                new RecurringToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner")
                 .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
                 .WithStartDate(DateTime.Now.AddDays(7))
                 .WithColor("green")
@@ -119,7 +120,7 @@ namespace gogoal
                 .WithIsChecked(true)
                 .Build());
             goalTodoItems.Add(
-                 new RecurringToDoItemModel.RecurringBuilder(Guid.NewGuid(), "Grooming Tony")
+                 new RecurringToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony")
                 .WithStartDate(DateTime.Now.AddDays(7))
                 .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
                 .WithColor("red")
@@ -129,7 +130,7 @@ namespace gogoal
                 .WithIsChecked(false)
                 .Build());
             generalToDoItems.Add(
-                new ToDoItemModel.GeneralBuilder(Guid.NewGuid(), "Call Erica's house owner")
+                new ToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner", SelectedDate)
                 .WithColor("green")
                 .WithDetails("details")
                 .WithGoalId(null)
@@ -137,7 +138,7 @@ namespace gogoal
                 .WithIsChecked(true)
                 .Build());
             generalToDoItems.Add(
-                 new ToDoItemModel.GeneralBuilder(Guid.NewGuid(), "Grooming Tony")
+                 new ToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony", SelectedDate)
                 .WithColor("red")
                 .WithDetails("details")
                 .WithGoalId(null)
