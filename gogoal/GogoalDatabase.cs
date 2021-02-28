@@ -75,7 +75,7 @@ namespace gogoal
             return Database.InsertAsync(item);
         }
 
-        public Task<int> UpdateItemAsync(ToDoItemModel item)
+        public Task<int> UpdateItemAsync(BaseToDoItemModel item)
         {
             return Database.UpdateAsync(item);
         }
@@ -83,6 +83,18 @@ namespace gogoal
         public Task<int> DeleteItemAsync(ToDoItemModel item)
         {
             return Database.DeleteAsync(item);
+        }
+
+        public Task<int> UpdateRecurringCheckedResultModel(RecurringToDoItemCheckedModel model, bool isChecked)
+        {
+            if (isChecked)
+            {
+                return Database.InsertAsync(model);
+            }
+            else
+            {
+                return Database.DeleteAsync(model);
+            }
         }
     }
 }

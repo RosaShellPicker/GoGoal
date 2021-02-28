@@ -68,7 +68,7 @@ namespace gogoal
         void InitializeCommand()
         {
             TextEntryCompleted = new Command( async() => await InsertGeneralTodoItem());
-            CheckedChangedCommand = new Command<ToDoItemModel>(async(toDoItemModel) => await UpdateCheckedStatus(toDoItemModel));
+            CheckedChangedCommand = new Command<BaseToDoItemModel>(async(toDoItemModel) => await UpdateCheckedStatus(toDoItemModel));
         }
 
         void DateChanged()
@@ -98,9 +98,14 @@ namespace gogoal
             EntryText = null;
         }
 
-        async Task UpdateCheckedStatus(ToDoItemModel toDoItemModel)
+        async Task UpdateCheckedStatus(BaseToDoItemModel toDoItemModel)
         {
             await App.Database.UpdateItemAsync(toDoItemModel);
+            if (toDoItemModel is RecurringToDoItemModel)
+            {
+                var model = new RecurringToDoItemCheckedModel(toDoItemModel.ToDoItemId, selectedDate);
+                await App.Database.UpdateRecurringCheckedResultModel(model, toDoItemModel.IsChecked);
+            }
         }
 
         async void InitializeData()
