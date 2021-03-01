@@ -22,7 +22,7 @@ namespace gogoal
             {
                 if(selectedDate != value)
                 {
-                    selectedDate = value;
+                    selectedDate = value.Date;
                     DateChanged();
                 }
             }
@@ -111,9 +111,24 @@ namespace gogoal
         async void InitializeData()
         {
             //TODO Need to Group todoList fetched from database
-            List<ToDoItemModel> todoList = await App.Database.GetGeneralToDoItemsAsync();
+            List<ToDoItemModel> todoList = await App.Database.GetGeneralToDoItemsByDateAsync(selectedDate);
+            List<RecurringToDoItemModel> recurringToDoItems = await App.Database.getRecurringToDoItemsByDate(selectedDate);
             var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
             var generalToDoItems = new ToDoItemGroupedModel("General", "GNR");
+            foreach(var item in todoList)
+            {
+                if (item.GoalId != null)
+                    goalTodoItems.Add(item);
+                else
+                    generalToDoItems.Add(item);
+            }
+            foreach (var item in recurringToDoItems)
+            {
+                if (item.GoalId != null)
+                    goalTodoItems.Add(item);
+                else
+                    generalToDoItems.Add(item);
+            }
             goalTodoItems.Add(
                 new RecurringToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner")
                 .WithDuration(new TimeSpan(30, 0, 0, 0, 0))

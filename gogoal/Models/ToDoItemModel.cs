@@ -22,6 +22,7 @@ namespace gogoal
 
             public Builder(Guid toDoItemId, string title, DateTime date) : base(toDoItemId, title)
             {
+                this.Date = date;
             }
 
             public Builder WithStartDate(DateTime Date)

@@ -29,6 +29,11 @@ namespace gogoal
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(ToDoItemModel)).ConfigureAwait(false);
                 }
+
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(RecurringToDoItemModel).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(RecurringToDoItemModel)).ConfigureAwait(false);
+                }
                 initialized = true;
             }
         }
@@ -50,14 +55,7 @@ namespace gogoal
         /// <returns></returns>
         public Task<List<ToDoItemModel>> GetGeneralToDoItemsByDateAsync(DateTime date)
         {
-            // SQL queries are also possible
-            //return Database.QueryAsync<ToDoItemModel>("SELECT * FROM [ToDoItemModel] " +
-            //    "WHERE [StartDate] != null" +
-            //    "Add [StartTime]+[Duration] >=  ");
-
-            Database.QueryAsync<ToDoItemModel>("Select * from [ToDoItemModel]" +
-                "WHERE [Date] = ?", date);
-            return null;
+            return Database.Table<ToDoItemModel>().Where(i => i.Date == date).ToListAsync();
         }
 
         public Task<List<ToDoItemModel>> GetToDoItemsByGoalId(Guid goalId)
@@ -83,6 +81,12 @@ namespace gogoal
         public Task<int> DeleteItemAsync(ToDoItemModel item)
         {
             return Database.DeleteAsync(item);
+        }
+
+        public Task<List<RecurringToDoItemModel>> getRecurringToDoItemsByDate(DateTime date)
+        {
+            //TODO need to confirm the status of goal and the status of todo items
+            return Database.Table<RecurringToDoItemModel>().Where(i => i.StartDate < date).ToListAsync();
         }
 
         public Task<int> UpdateRecurringCheckedResultModel(RecurringToDoItemCheckedModel model, bool isChecked)
