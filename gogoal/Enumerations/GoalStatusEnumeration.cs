@@ -1,5 +1,4 @@
-﻿using System;
-namespace gogoal
+﻿namespace gogoal
 {
     public enum GoalStatusEnumeration
     {

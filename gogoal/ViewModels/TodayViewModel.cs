@@ -56,13 +56,13 @@ namespace gogoal
         public TodayViewModel()
         {
             SelectedDate = DateToday;
+            InitializeCommand();
         }
 
         public TodayViewModel(DateTime dateTime)
         {
             SelectedDate = dateTime;
             InitializeCommand();
-            InitializeData();
         }
 
         void InitializeCommand()
@@ -73,8 +73,9 @@ namespace gogoal
 
         void DateChanged()
         {
-                //TODO to show todo items for the choosen date
-                //不刷新页面，只刷新数据，同时控制“Today的显示”
+            //TODO to show todo items for the choosen date
+            //不刷新页面，只刷新数据，同时控制“Today的显示”
+            InitializeData();
         }
 
         async Task InsertGeneralTodoItem()
@@ -110,7 +111,7 @@ namespace gogoal
 
         async void InitializeData()
         {
-            //TODO Need to Group todoList fetched from database
+            ToDoItemsGrouped.Clear();//TODO CheckedChanged when this observableCollection changed.
             List<ToDoItemModel> todoList = await App.Database.GetGeneralToDoItemsByDateAsync(selectedDate);
             List<RecurringToDoItemModel> recurringToDoItems = await App.Database.getRecurringToDoItemsByDate(selectedDate);
             var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
@@ -129,42 +130,43 @@ namespace gogoal
                 else
                     generalToDoItems.Add(item);
             }
-            goalTodoItems.Add(
-                new RecurringToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner")
-                .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
-                .WithStartDate(DateTime.Now.AddDays(7))
-                .WithColor("green")
-                .WithDetails("details")
-                .WithGoalId(Guid.NewGuid())
-                .WithImportantLevel(ImportantLevelEnumeration.ImportantNonImergency)
-                .WithIsChecked(true)
-                .Build());
-            goalTodoItems.Add(
-                 new RecurringToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony")
-                .WithStartDate(DateTime.Now.AddDays(7))
-                .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
-                .WithColor("red")
-                .WithDetails("details")
-                .WithGoalId(Guid.NewGuid())
-                .WithImportantLevel(ImportantLevelEnumeration.ImergencyNonimportant)
-                .WithIsChecked(false)
-                .Build());
-            generalToDoItems.Add(
-                new ToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner", SelectedDate)
-                .WithColor("green")
-                .WithDetails("details")
-                .WithGoalId(null)
-                .WithImportantLevel(ImportantLevelEnumeration.ImportantNonImergency)
-                .WithIsChecked(true)
-                .Build());
-            generalToDoItems.Add(
-                 new ToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony", SelectedDate)
-                .WithColor("red")
-                .WithDetails("details")
-                .WithGoalId(null)
-                .WithImportantLevel(ImportantLevelEnumeration.ImergencyNonimportant)
-                .WithIsChecked(false)
-                .Build());
+            //Mock data
+            //goalTodoItems.Add(
+            //    new RecurringToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner")
+            //    .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
+            //    .WithStartDate(DateTime.Now.AddDays(7))
+            //    .WithColor("green")
+            //    .WithDetails("details")
+            //    .WithGoalId(Guid.NewGuid())
+            //    .WithImportantLevel(ImportantLevelEnumeration.ImportantNonImergency)
+            //    .WithIsChecked(true)
+            //    .Build());
+            //goalTodoItems.Add(
+            //     new RecurringToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony")
+            //    .WithStartDate(DateTime.Now.AddDays(7))
+            //    .WithDuration(new TimeSpan(30, 0, 0, 0, 0))
+            //    .WithColor("red")
+            //    .WithDetails("details")
+            //    .WithGoalId(Guid.NewGuid())
+            //    .WithImportantLevel(ImportantLevelEnumeration.ImergencyNonimportant)
+            //    .WithIsChecked(false)
+            //    .Build());
+            //generalToDoItems.Add(
+            //    new ToDoItemModel.Builder(Guid.NewGuid(), "Call Erica's house owner", SelectedDate)
+            //    .WithColor("green")
+            //    .WithDetails("details")
+            //    .WithGoalId(null)
+            //    .WithImportantLevel(ImportantLevelEnumeration.ImportantNonImergency)
+            //    .WithIsChecked(true)
+            //    .Build());
+            //generalToDoItems.Add(
+            //     new ToDoItemModel.Builder(Guid.NewGuid(), "Grooming Tony", SelectedDate)
+            //    .WithColor("red")
+            //    .WithDetails("details")
+            //    .WithGoalId(null)
+            //    .WithImportantLevel(ImportantLevelEnumeration.ImergencyNonimportant)
+            //    .WithIsChecked(false)
+            //    .Build());
             ToDoItemsGrouped.Add(goalTodoItems);
             ToDoItemsGrouped.Add(generalToDoItems);
         }

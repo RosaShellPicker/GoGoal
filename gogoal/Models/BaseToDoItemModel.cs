@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System;
-using System.ComponentModel;
+﻿using System;
 using SQLite;
 namespace gogoal
 {

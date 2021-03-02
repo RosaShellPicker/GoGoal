@@ -15,7 +15,7 @@
             <Label Grid.Column="0"
                    Text="Today" VerticalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="White"/>
             <DatePicker Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"
-               FontSize="18" TextColor="White" FontAttributes="Bold"
+               FontSize="18" TextColor="White" FontAttributes="Bold" Date="{Binding SelectedDate}"
                MinimumDate="{Binding DateToday}"/>
         </Grid>
     </NavigationPage.TitleView>

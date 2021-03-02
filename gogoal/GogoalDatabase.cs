@@ -34,6 +34,11 @@ namespace gogoal
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(RecurringToDoItemModel)).ConfigureAwait(false);
                 }
+
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(RecurringToDoItemCheckedModel).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(RecurringToDoItemCheckedModel)).ConfigureAwait(false);
+                }
                 initialized = true;
             }
         }
