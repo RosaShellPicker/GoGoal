@@ -20,12 +20,9 @@
         <Label Text='Title:' HorizontalOptions="EndAndExpand"
             Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
         <Entry Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"/>
-        <Label Text="Detail:"  HorizontalOptions="EndAndExpand"
-            Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Entry Grid.Row="1" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
         <Label Text="Importance:"  HorizontalOptions="EndAndExpand"
-                Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Picker x:Name="ImportancePicker" Grid.Row="2" Grid.Column="1"
+                Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
+        <Picker x:Name="ImportancePicker" Grid.Row="1" Grid.Column="1"
                 FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -37,10 +34,13 @@
             </Picker.ItemsSource>
         </Picker>
         <Label Text="Due Day:"  HorizontalOptions="EndAndExpand"
-               Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <DatePicker Grid.Row="3" Grid.Column="1"
+               Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
+        <DatePicker Grid.Row="2" Grid.Column="1"
                FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"
                MinimumDate="{Binding Today}"/>
+         <Label Text="Note:"  HorizontalOptions="EndAndExpand"
+            Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
+        <Entry Grid.Row="3" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
         <ListView Grid.ColumnSpan="2" Grid.Row="4" BackgroundColor="Yellow" Margin="10,10,10,10">
         </ListView>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
@@ -50,9 +50,10 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="newToDoBtn" Text="+ NEW TODO" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSkyBlue" TextColor="White"
                     Grid.Row="0" Grid.Column="0"
-                    Clicked="newToDoBtn_Clicked" />
+                    Command="{Binding NewToDoButtonClicked}" />
             <Button Text="SAVE" HeightRequest="40" WidthRequest="100" BackgroundColor="LightSkyBlue" TextColor="White"
-                    Grid.Row="0" Grid.Column="1"/>
+                    Grid.Row="0" Grid.Column="1"
+                    Command="{Binding SaveButtonClicked}"/>
         </Grid>
     </Grid>
 </ContentPage>

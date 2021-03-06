@@ -39,6 +39,18 @@ namespace gogoal
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(RecurringToDoItemCheckedModel)).ConfigureAwait(false);
                 }
+
+                //if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(GoalStageModel).Name))
+                //{
+                //    await Database.CreateTablesAsync(CreateFlags.None, typeof(GoalStageModel)).ConfigureAwait(false);
+                //}
+
+                //if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(GoalModel).Name))
+                //{
+                //    await Database.CreateTablesAsync(CreateFlags.None, typeof(GoalModel)).ConfigureAwait(false);
+                //}
+
+
                 initialized = true;
             }
         }
@@ -52,7 +64,7 @@ namespace gogoal
             return Database.Table<ToDoItemModel>().ToListAsync();
         }
 
-        //TODO
+        //TODOItem
         /// <summary>
         /// Select all the items for today include items from goals and general items,
         /// to select a goal todoItems is hard, due to goal items have start time and duration.
@@ -78,16 +90,23 @@ namespace gogoal
             return Database.InsertAsync(item);
         }
 
-        public Task<int> UpdateItemAsync(BaseToDoItemModel item)
-        {
-            return Database.UpdateAsync(item);
-        }
-
         public Task<int> DeleteItemAsync(ToDoItemModel item)
         {
             return Database.DeleteAsync(item);
         }
 
+        public Task<int> DeleteToDoItemByGaolIdAsync(Guid goalId)
+        {
+            return Database.Table<ToDoItemModel>().DeleteAsync(toDoItem => toDoItem.GoalId == goalId);
+
+        }
+
+        public Task<int> UpdateItemAsync(BaseToDoItemModel item)
+        {
+            return Database.UpdateAsync(item);
+        }
+
+        //RecurringToDoItem
         public Task<List<RecurringToDoItemModel>> getRecurringToDoItemsByDate(DateTime date)
         {
             //TODO need to confirm the status of goal and the status of todo items
@@ -104,6 +123,34 @@ namespace gogoal
             {
                 return Database.DeleteAsync(model);
             }
+        }
+
+        public Task<int> DeleteReucrringToDoItemByGoalId(Guid goalId)
+        {
+            Database.Table<RecurringToDoItemCheckedModel>().DeleteAsync(i => i.GoalId == goalId);
+            return Database.Table<RecurringToDoItemModel>().DeleteAsync(i => i.GoalId == goalId);
+        }
+
+
+        //Goal
+        public Task<List<GoalModel>> GetGoals()
+        {
+            return Database.Table<GoalModel>().ToListAsync();
+        }
+
+        public Task<int> InsertGoalItemAsync(GoalModel item)
+        {
+            return Database.InsertAsync(item);
+        }
+
+        public Task<int> UpdateGoalItemAsync(GoalModel item)
+        {
+            return Database.UpdateAsync(item);
+        }
+
+        public Task<int> DeleteGoalItemAsync(GoalModel item)
+        {
+            return Database.DeleteAsync(item);
         }
     }
 }

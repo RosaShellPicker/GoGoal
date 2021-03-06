@@ -73,8 +73,6 @@ namespace gogoal
 
         void DateChanged()
         {
-            //TODO to show todo items for the choosen date
-            //不刷新页面，只刷新数据，同时控制“Today的显示”
             InitializeData();
         }
 
@@ -104,7 +102,7 @@ namespace gogoal
             await App.Database.UpdateItemAsync(toDoItemModel);
             if (toDoItemModel is RecurringToDoItemModel)
             {
-                var model = new RecurringToDoItemCheckedModel(toDoItemModel.ToDoItemId, selectedDate);
+                var model = new RecurringToDoItemCheckedModel(toDoItemModel.ToDoItemId, toDoItemModel.GoalId, selectedDate);
                 await App.Database.UpdateRecurringCheckedResultModel(model, toDoItemModel.IsChecked);
             }
         }

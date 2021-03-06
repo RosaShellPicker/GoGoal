@@ -3,9 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace gogoal
 {
-    /// <summary>
-    /// The last 
-    /// </summary>
+
     public class ToDoItemModel:BaseToDoItemModel
     {
         public DateTime Date { get; set; }

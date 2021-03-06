@@ -21,7 +21,7 @@
                     AbsoluteLayout.LayoutBounds="0,1,1,40"
                     AbsoluteLayout.LayoutFlags="YProportional,WidthProportional"
                     Padding="20,0,20,0"
-                    Text="+ Goal" FontSize="16" TextColor="White" BackgroundColor="LightSkyBlue"
+                    Text="+ Goal" FontSize="16" TextColor="White" BackgroundColor="#03A9F4"
                     Clicked="NewGoal_Clicked"/>
         </AbsoluteLayout>
 </ContentPage>
