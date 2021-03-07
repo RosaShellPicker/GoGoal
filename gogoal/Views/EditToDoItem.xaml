@@ -16,42 +16,27 @@
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Label Text='Stage:' HorizontalOptions="EndAndExpand"
-                   Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
-            <Picker Title="Select a stage"
-                    Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Stage1</x:String>
-                        <x:String>Stage2</x:String>
-                        <x:String>Stage3</x:String>
-                        <x:String>Stage4</x:String>
-                        <x:String>New Stage//TODO editable picker</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
 
             <Label Text="Title:"  HorizontalOptions="EndAndExpand"
+            Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
+            <Entry Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
+
+            <Label Text="Detail:"  HorizontalOptions="EndAndExpand"
             Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
             <Entry Grid.Row="1" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
 
-            <Label Text="Detail:"  HorizontalOptions="EndAndExpand"
-            Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
-            <Entry Grid.Row="2" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
-
             <Label Text="Start Time:"  HorizontalOptions="EndAndExpand"
-            Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
-            <Label Text="Undefined" Grid.Row="3" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,10,10,0" />
+            Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
+            <Label Text="Undefined" Grid.Row="2" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,10,10,0" />
 
             <Label Text='Repeat:' HorizontalOptions="EndAndExpand"
-                   Grid.Row="4" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
-            <Picker Title="Select a stage" Grid.Row="4" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
+                   Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
+            <Picker Title="Select a recurrence" Grid.Row="3" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Daily</x:String>
@@ -65,8 +50,8 @@
             </Picker>
 
             <Label Text="Duration:"  HorizontalOptions="EndAndExpand"
-            Grid.Row="5" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
-            <StackLayout Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+            Grid.Row="4" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,0"/>
+            <StackLayout Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
                 <Picker Title="Select a number"  FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

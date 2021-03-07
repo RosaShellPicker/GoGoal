@@ -20,7 +20,6 @@ namespace gogoal
         public ImportantLevelEnumeration ImportantLevel { get; set; }
         public DateTime StartDate { get; set; } // The date this goal started
         public GoalStatusEnumeration GoalStatus { get; set; }
-        public List<GoalStageModel> GoalStages { get; set; } // for group todoitem of one goal, just use stage title to 
 
         public GoalModel()
         {
@@ -38,7 +37,6 @@ namespace gogoal
             private ImportantLevelEnumeration ImportantLevel { get; set; }
             private DateTime StartDate { get; set; }
             private GoalStatusEnumeration GoalStatus { get; set; }
-            private List<GoalStageModel> GoalStageModels { get; set; }
 
             /// <summary>
             /// Not nullable value for one GoalModel in constructor
@@ -81,12 +79,6 @@ namespace gogoal
                 return this;
             }
 
-            public Builder WithGoalStages(List<GoalStageModel> goalStageModels)
-            {
-                this.GoalStageModels = goalStageModels;
-                return this;
-            }
-
             public GoalModel Build()
             {
                 return new GoalModel
@@ -98,7 +90,6 @@ namespace gogoal
                     StartDate = this.StartDate,
                     GoalStatus = this.GoalStatus,
                     ImportantLevel = this.ImportantLevel,
-                    GoalStages = this.GoalStageModels
                 };
             }
         }
