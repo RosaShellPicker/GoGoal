@@ -5,6 +5,7 @@
         Created = 0,
         Ongoing = 1,
         Paused = 2,
-        Completed = 3
+        Completed = 3,
+        Closed = 4
     }
 }

@@ -15,7 +15,7 @@ namespace gogoal
         [PrimaryKey]
         public Guid GoalId { get; set; }
         public string Title { get; set; }
-        public string Detail { get; set; }
+        public string Notes { get; set; }
         public double Progress { get; set; }
         public ImportantLevelEnumeration ImportantLevel { get; set; }
         public DateTime StartDate { get; set; } // The date this goal started
@@ -32,7 +32,7 @@ namespace gogoal
         {
             private Guid GoalId { get; set; }
             private string Title { get; set; }
-            private string Details { get; set; }
+            private string Notes { get; set; }
             private double Progress { get; set; }
             private ImportantLevelEnumeration ImportantLevel { get; set; }
             private DateTime StartDate { get; set; }
@@ -49,9 +49,9 @@ namespace gogoal
                 this.Title = title;
             }
 
-            public Builder WithDetails(string details)
+            public Builder WithDetails(string notes)
             {
-                this.Details = details;
+                this.Notes = notes;
                 return this;
             }
 
@@ -85,7 +85,7 @@ namespace gogoal
                 {
                     GoalId = this.GoalId,
                     Title = this.Title,
-                    Detail = this.Details,
+                    Notes = this.Notes,
                     Progress = this.Progress,
                     StartDate = this.StartDate,
                     GoalStatus = this.GoalStatus,
