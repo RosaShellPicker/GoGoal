@@ -68,7 +68,7 @@ namespace gogoal
         void InitializeCommand()
         {
             TextEntryCompleted = new Command( async() => await InsertGeneralTodoItem());
-            CheckedChangedCommand = new Command<BaseToDoItemModel>(async(toDoItemModel) => await UpdateCheckedStatus(toDoItemModel));
+            CheckedChangedCommand = new Command<BaseToDoItemModel>((toDoItemModel) => UpdateCheckedStatus(toDoItemModel));
         }
 
         void DateChanged()
@@ -97,21 +97,16 @@ namespace gogoal
             EntryText = null;
         }
 
-        async Task UpdateCheckedStatus(BaseToDoItemModel toDoItemModel)
+        void  UpdateCheckedStatus(BaseToDoItemModel toDoItemModel)
         {
-            await App.Database.UpdateItemAsync(toDoItemModel);
-            if (toDoItemModel is RecurringToDoItemModel)
-            {
-                var model = new RecurringToDoItemCheckedModel(toDoItemModel.ToDoItemId, toDoItemModel.GoalId, selectedDate);
-                await App.Database.UpdateRecurringCheckedResultModel(model, toDoItemModel.IsChecked);
-            }
+            toDoItemModel.UpdateToDoItemCheckedStatus(toDoItemModel.IsChecked);
         }
 
         async void InitializeData()
         {
             ToDoItemsGrouped.Clear();//TODO CheckedChanged when this observableCollection changed.
             List<ToDoItemModel> todoList = await App.Database.GetGeneralToDoItemsByDateAsync(selectedDate);
-            List<RecurringToDoItemModel> recurringToDoItems = await App.Database.getRecurringToDoItemsByDate(selectedDate);
+            List<RecurringToDoItemModel> recurringToDoItems = await App.Database.GetRecurringToDoItemsByDate(selectedDate);
             var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
             var generalToDoItems = new ToDoItemGroupedModel("General", "GNR");
             foreach(var item in todoList)

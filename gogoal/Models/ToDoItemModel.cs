@@ -12,6 +12,12 @@ namespace gogoal
         {
         }
 
+        public async override void UpdateToDoItemCheckedStatus(bool Checked)
+        {
+            IsChecked = Checked;
+            await App.Database.UpdateItemAsync(this);
+        }
+
         public class Builder : BaseToDoItemModel.BaseBuilder<ToDoItemModel>
         {
             public DateTime Date { get; set; }
@@ -33,7 +39,6 @@ namespace gogoal
                 {
                     ToDoItemId = this.ToDoItemId,
                     GoalId = this.GoalId,
-                    StageId = this.StageId,
                     Title = this.Title,
                     Date = this.Date,
                     IsChecked = this.IsChecked,
@@ -45,6 +50,7 @@ namespace gogoal
         }
     }
 
+   
     public class ToDoItemGroupedModel:ObservableCollection<BaseToDoItemModel>
     {
         public string GroupTitle { get; set; }

@@ -25,6 +25,17 @@ namespace gogoal
         {
             if (!initialized)
             {
+                //Child model need to be create first
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(TagModel).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(TagModel)).ConfigureAwait(false);
+                }
+
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(GoalModel).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(GoalModel)).ConfigureAwait(false);
+                }
+
                 if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(ToDoItemModel).Name))
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(ToDoItemModel)).ConfigureAwait(false);
@@ -35,20 +46,14 @@ namespace gogoal
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(RecurringToDoItemModel)).ConfigureAwait(false);
                 }
 
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(RecurringToDoItemCheckedModel).Name))
-                {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(RecurringToDoItemCheckedModel)).ConfigureAwait(false);
-                }
+                
 
                 //if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(GoalStageModel).Name))
                 //{
                 //    await Database.CreateTablesAsync(CreateFlags.None, typeof(GoalStageModel)).ConfigureAwait(false);
                 //}
 
-                //if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(GoalModel).Name))
-                //{
-                //    await Database.CreateTablesAsync(CreateFlags.None, typeof(GoalModel)).ConfigureAwait(false);
-                //}
+               
 
 
                 initialized = true;
@@ -101,37 +106,26 @@ namespace gogoal
 
         }
 
-        public Task<int> UpdateItemAsync(BaseToDoItemModel item)
+        public Task<int> UpdateItemAsync(ToDoItemModel item)
         {
             return Database.UpdateAsync(item);
         }
 
+        #region RecurringTODOItem
         //RecurringToDoItem
-        public Task<List<RecurringToDoItemModel>> getRecurringToDoItemsByDate(DateTime date)
+        public Task<List<RecurringToDoItemModel>> GetRecurringToDoItemsByDate(DateTime date)
         {
             //TODO need to confirm the status of goal and the status of todo items
-            return Database.Table<RecurringToDoItemModel>().Where(i => i.StartDate < date).ToListAsync();
+            return Database.Table<RecurringToDoItemModel>().Where(i => i.StartDate.AddDays(i.Days) > date).ToListAsync();
         }
 
-        public Task<int> UpdateRecurringCheckedResultModel(RecurringToDoItemCheckedModel model, bool isChecked)
+        public Task<int> UpdateRecurringToDoItemAsync(RecurringToDoItemModel item)
         {
-            if (isChecked)
-            {
-                return Database.InsertAsync(model);
-            }
-            else
-            {
-                return Database.DeleteAsync(model);
-            }
+            return Database.UpdateAsync(item);
         }
+        #endregion
 
-        public Task<int> DeleteReucrringToDoItemByGoalId(Guid goalId)
-        {
-            Database.Table<RecurringToDoItemCheckedModel>().DeleteAsync(i => i.GoalId == goalId);
-            return Database.Table<RecurringToDoItemModel>().DeleteAsync(i => i.GoalId == goalId);
-        }
-
-
+        #region Goals
         //Goal
         public Task<List<GoalModel>> GetGoals()
         {
@@ -152,5 +146,6 @@ namespace gogoal
         {
             return Database.DeleteAsync(item);
         }
+        #endregion
     }
 }
