@@ -27,12 +27,7 @@ namespace gogoal
                 this.Date = date;
             }
 
-            public Builder WithStartDate(DateTime Date)
-            {
-                this.Date = Date;
-                return this;
-            }
-
+          
             public override ToDoItemModel Build()
             {
                 return new ToDoItemModel()

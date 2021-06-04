@@ -16,9 +16,9 @@ namespace gogoal
         //[ManyToMany]
         //TODO Need to install an extension for this child model
         //And to declare the relations of these two classes
-        public TagModel Tag1 { get; set; }
-        public TagModel Tag2 { get; set; }
-        public TagModel Tag3 { get; set; }
+        public string Tag1 { get; set; }
+        public string Tag2 { get; set; }
+        public string Tag3 { get; set; }
 
         public BaseToDoItemModel()
         {

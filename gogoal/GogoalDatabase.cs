@@ -35,11 +35,12 @@ namespace gogoal
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(GoalModel)).ConfigureAwait(false);
                 }
-
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(ToDoItemModel).Name))
-                {
+                //await Database.DropTableAsync<ToDoItemModel>();
+                //if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(ToDoItemModel).Name))
+                //{
+                    await Database.DropTableAsync<ToDoItemModel>();
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(ToDoItemModel)).ConfigureAwait(false);
-                }
+                //}
 
                 if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(RecurringToDoItemModel).Name))
                 {
@@ -116,7 +117,8 @@ namespace gogoal
         public Task<List<RecurringToDoItemModel>> GetRecurringToDoItemsByDate(DateTime date)
         {
             //TODO need to confirm the status of goal and the status of todo items
-            return Database.Table<RecurringToDoItemModel>().Where(i => i.StartDate.AddDays(i.Days) > date).ToListAsync();
+            //return Database.Table<RecurringToDoItemModel>().Where(i => i.StartDate.Add(new TimeSpan(i.Days,0,0,0)) > date).ToListAsync();
+            return Database.Table<RecurringToDoItemModel>().ToListAsync();
         }
 
         public Task<int> UpdateRecurringToDoItemAsync(RecurringToDoItemModel item)

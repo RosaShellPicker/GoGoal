@@ -30,14 +30,9 @@ namespace gogoal
             private int CheckedDays { get; set; }
             private String CheckedDetails { get; set; }
 
-            public Builder(Guid toDoItemId, string title) : base(toDoItemId, title)
-            {
-            }
-
-            public Builder WithStartDate(DateTime startDate)
+            public Builder(Guid toDoItemId, string title, DateTime startDate) : base(toDoItemId, title)
             {
                 this.StartDate = startDate;
-                return this;
             }
 
             public Builder WithDays(int days)
@@ -59,6 +54,8 @@ namespace gogoal
                     Details = this.Details,
                     StartDate = this.StartDate,
                     Days = this.Days,
+                    CheckedDays = this.CheckedDays,
+                    CheckedDetails = this.CheckedDetails
                 };
             }
         }
