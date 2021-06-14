@@ -61,11 +61,55 @@ namespace gogoal
             }
         }
 
+        #region BaseToDoItemModel
+        //TODOItem
+        /// <summary>
+        /// Select all the items for today include items from goals and general items,
+        /// to select a goal todoItems is hard, due to goal items have start time and duration.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<BaseToDoItemModel>> GetGeneralToDoItemsByDateAsync(DateTime date)
+        {
+            var toDoItemModels = await GetToDoItemsByDateAsync(date);
+            var recurToDoItemModels = await GetRecurringToDoItemsByDate(date);
+
+            List<BaseToDoItemModel> baseItems = new List<BaseToDoItemModel>();
+            foreach(var toDoItem in toDoItemModels)
+            {
+                baseItems.Add(toDoItem);
+            }
+            foreach(var recurToDoItem in recurToDoItemModels)
+            {
+                baseItems.Add(recurToDoItem);
+            }
+            return baseItems;
+        }
+
+        public async Task<List<BaseToDoItemModel>> GetGeneralToDoItemsByGoalId(Guid goalId)
+        {
+            var toDoItemModels = await GetToDoItemsByGoalId(goalId);
+            var recurToDoItemModels = await GetRecurringToDoItemsByGoalId(goalId);
+
+            List<BaseToDoItemModel> baseItems = new List<BaseToDoItemModel>();
+            foreach (var toDoItem in toDoItemModels)
+            {
+                baseItems.Add(toDoItem);
+            }
+            foreach (var recurToDoItem in recurToDoItemModels)
+            {
+                baseItems.Add(recurToDoItem);
+            }
+            return baseItems;
+        }
+        #endregion
+
+
+        #region ToDoItemModel
         /// <summary>
         /// Data manipulation methods
         /// </summary>
         /// <returns></returns>
-        public Task<List<ToDoItemModel>> GetGeneralToDoItemsAsync()
+        public Task<List<ToDoItemModel>> GetToDoItemsAsync()
         {
             return Database.Table<ToDoItemModel>().ToListAsync();
         }
@@ -76,7 +120,7 @@ namespace gogoal
         /// to select a goal todoItems is hard, due to goal items have start time and duration.
         /// </summary>
         /// <returns></returns>
-        public Task<List<ToDoItemModel>> GetGeneralToDoItemsByDateAsync(DateTime date)
+        public Task<List<ToDoItemModel>> GetToDoItemsByDateAsync(DateTime date)
         {
             return Database.Table<ToDoItemModel>().Where(i => i.Date == date).ToListAsync();
         }
@@ -111,6 +155,7 @@ namespace gogoal
         {
             return Database.UpdateAsync(item);
         }
+        #endregion
 
         #region RecurringTODOItem
         //RecurringToDoItem
@@ -119,6 +164,11 @@ namespace gogoal
             //TODO need to confirm the status of goal and the status of todo items
             //return Database.Table<RecurringToDoItemModel>().Where(i => i.StartDate.Add(new TimeSpan(i.Days,0,0,0)) > date).ToListAsync();
             return Database.Table<RecurringToDoItemModel>().ToListAsync();
+        }
+
+        public Task<List<RecurringToDoItemModel>> GetRecurringToDoItemsByGoalId(Guid goalId)
+        {
+            return Database.Table<RecurringToDoItemModel>().Where(i => i.GoalId == goalId).ToListAsync();
         }
 
         public Task<int> UpdateRecurringToDoItemAsync(RecurringToDoItemModel item)

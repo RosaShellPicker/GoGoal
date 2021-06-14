@@ -18,7 +18,6 @@ namespace gogoal
         public string Notes { get; set; }
         public double Progress { get; set; }
         public ImportantLevelEnumeration ImportantLevel { get; set; }
-        public DateTime StartDate { get; set; } // The date this goal started
         public GoalStatusEnumeration GoalStatus { get; set; }
 
         public GoalModel()
@@ -35,7 +34,6 @@ namespace gogoal
             private string Notes { get; set; }
             private double Progress { get; set; }
             private ImportantLevelEnumeration ImportantLevel { get; set; }
-            private DateTime StartDate { get; set; }
             private GoalStatusEnumeration GoalStatus { get; set; }
 
             /// <summary>
@@ -73,11 +71,6 @@ namespace gogoal
                 return this;
             }
 
-            public Builder WithStartDate(DateTime startDate)
-            {
-                this.StartDate = startDate;
-                return this;
-            }
 
             public GoalModel Build()
             {
@@ -87,7 +80,6 @@ namespace gogoal
                     Title = this.Title,
                     Notes = this.Notes,
                     Progress = this.Progress,
-                    StartDate = this.StartDate,
                     GoalStatus = this.GoalStatus,
                     ImportantLevel = this.ImportantLevel,
                 };

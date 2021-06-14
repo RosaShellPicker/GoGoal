@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -8,6 +10,7 @@ namespace gogoal
     public class EditGoalViewModel : ExtendedBindableObject
     {
         public GoalModel goal { get; set; }
+        public List<BaseToDoItemModel> ToDoItems { get; set; }
 
         public ICommand NewToDoButtonClicked { private set; get; }
 
@@ -21,6 +24,8 @@ namespace gogoal
         public EditGoalViewModel(GoalModel goal)
         {
             this.goal = goal;
+            InitializeCommand();
+            InitializeData(this.goal.GoalId);
         }
 
         void InitializeCommand()
@@ -28,12 +33,20 @@ namespace gogoal
             NewToDoButtonClicked = new Command(async () => {
                 await Application.Current.MainPage.Navigation.PushAsync(new EditToDoItem(goal.GoalId, goal.Title));
             });
-            //SaveButtonClicked = new Command(async () => await UpdateGoal());
+            SaveButtonClicked = new Command(async () => await SaveGoal());
         }
 
-        //async Task UpdateGoal()
-        //{
-        //   // await App.Database.UpdateGoalItemAsync(goal);
-        //}
+        async Task SaveGoal()
+        {
+            await App.Database.UpdateGoalItemAsync(goal);
+        }
+
+        public async void InitializeData(Guid? goalId)
+        {
+            if (goal.GoalId != null || goal.GoalId != default)
+            {
+                ToDoItems = await App.Database.GetGeneralToDoItemsByGoalId(goal.GoalId);
+            }
+        }
     }
 }

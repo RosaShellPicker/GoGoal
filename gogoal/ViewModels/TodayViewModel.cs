@@ -105,7 +105,7 @@ namespace gogoal
         async void InitializeData()
         {
             ToDoItemsGrouped.Clear();//TODO CheckedChanged when this observableCollection changed.
-            List<ToDoItemModel> todoList = await App.Database.GetGeneralToDoItemsByDateAsync(selectedDate);
+            List<BaseToDoItemModel> todoList = await App.Database.GetGeneralToDoItemsByDateAsync(selectedDate);
             List<RecurringToDoItemModel> recurringToDoItems = await App.Database.GetRecurringToDoItemsByDate(selectedDate);
             var goalTodoItems = new ToDoItemGroupedModel("Goal", "G");
             var generalToDoItems = new ToDoItemGroupedModel("General", "GNR");
