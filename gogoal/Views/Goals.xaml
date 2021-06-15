@@ -10,7 +10,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                 <Label Text="{Binding GoalStatus}" Margin="10,0,10,0"/>
-                                <Image BackgroundColor="Red"  MinimumHeightRequest="100" MinimumWidthRequest="100" Source="https://via.placeholder.com/150"/>
+                                <Image BackgroundColor="Purple"  MinimumHeightRequest="100" MinimumWidthRequest="100" Source="https://via.placeholder.com/150"/>
                                 <Label Text="{Binding Title}" VerticalOptions="Center"/>
                             </StackLayout>
                         </ViewCell>

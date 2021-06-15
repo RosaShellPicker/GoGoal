@@ -11,6 +11,7 @@ namespace gogoal
     {
         public GoalModel goal { get; set; }
         public List<BaseToDoItemModel> ToDoItems { get; set; }
+        private bool isNewGoal = false;
 
         public ICommand NewToDoButtonClicked { private set; get; }
 
@@ -18,6 +19,7 @@ namespace gogoal
         public EditGoalViewModel()
         {
             goal = new GoalModel.Builder(Guid.NewGuid(), "").Build();
+            isNewGoal = true;
             InitializeCommand();
         }
 
@@ -38,7 +40,14 @@ namespace gogoal
 
         async Task SaveGoal()
         {
-            await App.Database.UpdateGoalItemAsync(goal);
+            if (isNewGoal)
+            {
+                await App.Database.InsertGoalItemAsync(goal);
+            }
+            else
+            {
+                await App.Database.UpdateGoalItemAsync(goal);
+            }
         }
 
         public async void InitializeData(Guid? goalId)
