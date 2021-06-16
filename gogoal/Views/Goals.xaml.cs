@@ -9,33 +9,6 @@ namespace gogoal
     public partial class Goals : ContentPage
     {
         public List<GoalModel> GoalsSource { get; set; } = new List<GoalModel>();
-        //{
-        //    new GoalModel.Builder(Guid.NewGuid(), "Happy family")
-        //    .WithDetails(null)
-        //    .WithProgress(0)
-        //    .WithGoalStatus(GoalStatusEnumeration.Created)
-        //    .Build(),
-        //    new GoalModel.Builder(Guid.NewGuid(), "Healthier life")
-        //    .WithDetails(null)
-        //    .WithProgress(0)
-        //    .WithGoalStatus(GoalStatusEnumeration.Created)
-        //    .Build(),
-        //    new GoalModel.Builder(Guid.NewGuid(), "Reading more books")
-        //    .WithDetails(null)
-        //    .WithProgress(0)
-        //    .WithGoalStatus(GoalStatusEnumeration.Created)
-        //    .Build(),
-        //    new GoalModel.Builder(Guid.NewGuid(), "Help more people")
-        //    .WithDetails(null)
-        //    .WithProgress(0)
-        //    .WithGoalStatus(GoalStatusEnumeration.Created)
-        //    .Build(),
-        //    new GoalModel.Builder(Guid.NewGuid(), "Create more relationships")
-        //    .WithDetails(null)
-        //    .WithProgress(0)
-        //    .WithGoalStatus(GoalStatusEnumeration.Created)
-        //    .Build()
-        //};
 
         public Goals()
         {

@@ -9,9 +9,13 @@ namespace gogoal
 {
     public class EditGoalViewModel : ExtendedBindableObject
     {
-        public GoalModel goal { get; set; }
+        private GoalModel goal;
         public List<BaseToDoItemModel> ToDoItems { get; set; }
         private bool isNewGoal = false;
+
+        public string Title { get; set; }
+        public string Note { get; set; }
+        public string ImportantLevel { get; set; }
 
         public ICommand NewToDoButtonClicked { private set; get; }
 
@@ -40,6 +44,11 @@ namespace gogoal
 
         async Task SaveGoal()
         {
+            goal.Title = Title;
+            goal.Notes = Note;
+            ImportantLevelEnumeration importantLevel;
+            Enum.TryParse(ImportantLevel, out importantLevel);
+            goal.ImportantLevel = importantLevel;
             if (isNewGoal)
             {
                 await App.Database.InsertGoalItemAsync(goal);
@@ -54,6 +63,9 @@ namespace gogoal
         {
             if (goal.GoalId != null || goal.GoalId != default)
             {
+                Title = goal.Title;
+                Note = goal.Notes;
+                ImportantLevel = goal.ImportantLevel.ToString();
                 ToDoItems = await App.Database.GetGeneralToDoItemsByGoalId(goal.GoalId);
             }
         }

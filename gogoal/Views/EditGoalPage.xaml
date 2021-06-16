@@ -18,11 +18,11 @@
         </Grid.ColumnDefinitions>
         <Label Text='Title:' HorizontalOptions="EndAndExpand"
             Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Path=Title, Mode=TwoWay, Source=goal}" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"/>
+        <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Title}" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"/>
         <Label Text="Importance:"  HorizontalOptions="EndAndExpand"
                 Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
         <Picker x:Name="ImportancePicker" Grid.Row="1" Grid.Column="1"
-                SelectedItem="{Binding Path=ImportantLevel, Mode=TwoWay, Source=goal}"
+                SelectedItem="{Binding ImportantLevel}"
                 FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -36,7 +36,7 @@
      
          <Label Text="Note:"  HorizontalOptions="EndAndExpand"
             Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Editor Grid.Row="2" Grid.Column="1" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
+        <Editor Grid.Row="2" Grid.Column="1" Text="{Binding Note}" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
         <ListView Grid.ColumnSpan="2" Grid.Row="3" BackgroundColor="Yellow" Margin="10,10,10,10">
         </ListView>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
