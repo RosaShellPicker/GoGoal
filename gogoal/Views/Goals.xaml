@@ -4,7 +4,7 @@
             <ListView x:Name="GoalList" Opacity="0.5"
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="SizeProportional"
-                Margin="20,20,20,20">
+                Margin="20,20,20,20" ItemSelected="GoalList_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

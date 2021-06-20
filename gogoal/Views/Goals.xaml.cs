@@ -30,5 +30,11 @@ namespace gogoal
         {
             await this.Navigation.PushAsync(new EditGoalPage());
         }
+
+        async void GoalList_ItemSelected(System.Object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            GoalModel goal = (GoalModel)e.SelectedItem;
+            await this.Navigation.PushAsync(new EditGoalPage(goal));
+        }
     }
 }
