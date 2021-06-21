@@ -3,7 +3,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="gogoal.EditGoalPage"
+    xmlns:local ="clr-namespace:gogoal"
     Title="Edit Goal">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:EnumToStringConverter x:Key="EnumToString"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -18,25 +24,25 @@
         </Grid.ColumnDefinitions>
         <Label Text='Title:' HorizontalOptions="EndAndExpand"
             Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Title}" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"/>
+        <Entry Grid.Row="0" Grid.Column="1" Text="{Binding goal.Title,Mode=TwoWay}" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0"/>
         <Label Text="Importance:"  HorizontalOptions="EndAndExpand"
                 Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
         <Picker x:Name="ImportancePicker" Grid.Row="1" Grid.Column="1"
-                SelectedItem="{Binding ImportantLevel}"
+                SelectedItem="{Binding goal.ImportantLevel, Mode=TwoWay,Converter={StaticResource EnumToString}}"
                 FontSize="16" TextColor="DarkGray" Margin="10,0,10,0">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
-                    <x:String>ImportantAndImergency</x:String>
-                    <x:String>ImportantNonImergency</x:String>
-                    <x:String>ImergencyNonimportant</x:String>
-                    <x:String>NonimportantNonimergency</x:String>
+                    <x:String>Forget about it!</x:String>
+                    <x:String>Not Important but Imergency</x:String>
+                    <x:String>Important but Not Imergency</x:String>
+                    <x:String>Important and Imergency</x:String>
                 </x:Array>
             </Picker.ItemsSource>
         </Picker>
      
          <Label Text="Note:"  HorizontalOptions="EndAndExpand"
             Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="DarkGray" Padding="10,10,10,10"/>
-        <Editor Grid.Row="2" Grid.Column="1" Text="{Binding Note}" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
+        <Editor Grid.Row="2" Grid.Column="1" Text="{Binding goal.Notes,Mode=TwoWay}" FontSize="16" TextColor="DarkGray" Margin="10,0,10,0" />
         <ListView Grid.ColumnSpan="2" Grid.Row="3" BackgroundColor="Yellow" Margin="10,10,10,10">
         </ListView>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">

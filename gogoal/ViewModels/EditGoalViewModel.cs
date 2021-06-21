@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,7 +10,7 @@ namespace gogoal
 {
     public class EditGoalViewModel : ExtendedBindableObject
     {
-        private GoalModel goal;
+        public GoalModel goal { get; set; }
         public List<BaseToDoItemModel> ToDoItems { get; set; }
         private bool isNewGoal = false;
 

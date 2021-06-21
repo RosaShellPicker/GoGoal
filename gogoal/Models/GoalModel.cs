@@ -1,24 +1,96 @@
 ﻿using System;
 using System.Collections.Generic;
 using SQLite;
+using System.ComponentModel;
 
 namespace gogoal
 {
-    public class GoalModel
+    public class GoalModel : BaseModel
     {
         /// <summary>
         /// A model describe a long term or short term goal, which may inlcude
         /// a parent goal and a list of children goals, so that we can split a
         /// big goal into several ones, and finally become a can do todoitem in daily life
         /// </summary>
-
+        private Guid goalId;
+        private string title;
+        private string notes;
+        private double progress;
+        private ImportantLevelEnumeration importantLevel;
+        private GoalStatusEnumeration goalStatus;
         [PrimaryKey]
-        public Guid GoalId { get; set; }
-        public string Title { get; set; }
-        public string Notes { get; set; }
-        public double Progress { get; set; }
-        public ImportantLevelEnumeration ImportantLevel { get; set; }
-        public GoalStatusEnumeration GoalStatus { get; set; }
+        public Guid GoalId
+        {
+            get
+            {
+                return goalId;
+            }
+            set
+            {
+                goalId = value;
+                OnPropertyChanged("GoalId");
+            }
+        }
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                title = value;
+                OnPropertyChanged("Title");
+            }
+        }
+        public string Notes
+        {
+            get
+            {
+                return notes;
+            }
+            set
+            {
+                notes = value;
+                OnPropertyChanged("Notes");
+            }
+        }
+        public double Progress
+        {
+            get
+            {
+                return progress;
+            }
+            set
+            {
+                progress = value;
+                OnPropertyChanged("Progress");
+            }
+        }
+        public ImportantLevelEnumeration ImportantLevel
+        {
+            get
+            {
+                return importantLevel;
+            }
+            set
+            {
+                importantLevel = value;
+                OnPropertyChanged("ImportantLevel");
+            }
+        }
+        public GoalStatusEnumeration GoalStatus
+        {
+            get
+            {
+                return goalStatus;
+            }
+            set
+            {
+                goalStatus = value;
+                OnPropertyChanged("GoalStatus");
+            }
+        }
 
         public GoalModel()
         {
@@ -85,5 +157,7 @@ namespace gogoal
                 };
             }
         }
+
+        
     }
 }

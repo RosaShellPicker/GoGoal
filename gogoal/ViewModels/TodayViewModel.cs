@@ -85,7 +85,7 @@ namespace gogoal
             .WithColor(null)
             .WithDetails(null)
             .WithGoalId(null)
-            .WithImportantLevel(ImportantLevelEnumeration.Undefined)
+            .WithImportantLevel(ImportantLevelEnumeration.NonimportantNonimergency)
             .WithIsChecked(false).Build();
 
             ToDoItemsGrouped[1].Add(toDoItem);
